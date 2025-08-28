@@ -1,0 +1,26 @@
+---
+import MainLayout from "~/components/MainLayout.astro";
+import { getInfo, getLanguages, getRepos } from "~/lib/api-github";
+import type { Language, Repo } from "~/lib/types";
+
+export const prerender = true;
+export async function getStaticPaths() {
+    const repos = await getRepos();
+    return repos.map((repo) => ({params: {project: repo.name}}))
+}
+const {project} = Astro.params;
+const info: Repo = await getInfo(project);
+
+const languages: Language = await getLanguages(project, info.languages_url);
+
+
+---
+<title>{project} | Portfolio</title>
+<MainLayout>
+    Project Page
+    {project}
+    {info.homepage}
+    {Object.keys(languages).map((lang) => (
+        <div>{lang}</div>
+    ))}
+</MainLayout>

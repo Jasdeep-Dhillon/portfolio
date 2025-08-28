@@ -1,0 +1,24 @@
+---
+import MainLayout from "~/components/MainLayout.astro";
+import { getRepos } from "~/lib/api-github";
+import type { Repo } from "~/lib/types";
+
+const repos: Repo[] = await getRepos();
+---
+<title>Projects</title>
+<MainLayout>
+    <div>
+        Projects Page
+        <ul>
+            { repos.map((repo) => (
+                <li id={repo.id.toString()} class="mb-4 border-2 border-red-400">
+                    <a href={`/project/${repo.name}`}>Astro Link</a>
+                    <a href={repo.html_url} target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline text-xl font-bold">
+                        {repo.name}
+                    </a>
+                    {repo.description && <p class="text-gray-600">{repo.description}</p>}
+                </li>
+
+            )) }
+    </div>
+</MainLayout>
