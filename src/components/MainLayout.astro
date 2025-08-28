@@ -1,14 +1,18 @@
 ---
+import Footer from "./Footer.astro";
 import Head from "./Head.astro";
+import Navbar from "./Navbar.astro";
 ---
 
 <html>
     <head>
-        <meta charSet="UTF-8"/>
+        <meta charset="UTF-8"/>
         <Head />
     </head>
 
     <body>
+        <Navbar />
         <slot />
+        <Footer/>
     </body>
 </html>
