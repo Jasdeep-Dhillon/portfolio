@@ -1,0 +1,19 @@
+---
+import Head from '~/components/Head.astro';
+
+interface Props {
+  error: unknown;
+}
+
+const { error } = Astro.props;
+---
+<title>500 - Server Error</title>
+<Head/>
+<meta name="description" content="500 - Server Error" />
+
+<body>
+    <div class="h-screen w-full center flex flex-col items-center justify-center p-4 text-center">
+        <h1>500 - Server Error</h1>
+        <p>Internal Server Error</p>
+    </div>
+</body>
