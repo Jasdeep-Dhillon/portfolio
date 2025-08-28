@@ -1,8 +1,12 @@
 ---
-import "../styles/global.css";
+interface Props {
+  title?: string;
+}
+import "~/styles/global.css";
+const { title } = Astro.props;
 ---
 
 <link rel="sitemap" href="/sitemap-index.xml" />
-<title>Astro Tutorial</title>
+<title>{title ?? "Astro Tutorial"}</title>
 <meta name="description" content="Learning Astro" />
 <link rel="icon" type="x-icon" href="/favicon.svg" />
