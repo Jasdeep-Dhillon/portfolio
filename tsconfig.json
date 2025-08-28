@@ -25,8 +25,12 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "noPropertyAccessFromIndexSignature": false,
+
+    "paths": {
+      "~/*": ["./src/*"],
+    }
   },
-"extends": "astro/tsconfigs/base",
-"include": [".astro/types.d.ts", "**/*"],
-"exclude": ["dist"]
+  "extends": "astro/tsconfigs/base",
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist"]
 }
