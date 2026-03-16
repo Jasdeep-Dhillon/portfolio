@@ -1,42 +1,11 @@
 ---
-import Code from "phosphor-astro/CodeBold.astro"
-import Envelope from "phosphor-astro/EnvelopeDuoTone.astro"
-import Linkedin from "phosphor-astro/LinkedInLogoDuoTone.astro"
-import Github from "phosphor-astro/GithubLogoDuoTone.astro"
+import { Icon } from "astro-icon/components";
+import Github from "~/assets/icons/github.svg";
 ---
-<header>
-<nav class="flex justify-between p-4 items-center">
-    <h2 class="text-2xl font-bold">
-        <a href="/" class="flex items-center gap-2">
-            <Code height="32" />
-            Jasdeep Dhillon
-        </a>
-    </h2>
-    <ul class="flex justify-evenly gap-4 font-semibold bg-black/20 py-2 px-6 rounded-3xl">
+<nav class="center">
+    <ul class="flex justify-evenly gap-4 font-semibold bg-black/20 py-2 px-6 rounded-3xl font-pixel">
         <li class="hover:scale-105 transition-all"><a href="/">Home</a></li>
         <li><a href="/projects">Projects</a></li>
         <li><a href="/about">About</a></li>
     </ul>
-
-    <ul class="flex gap-2">
-        <li>
-            <a href="mailto:jsdhillon286@gmail.com" target="_blank">
-                <span class="sr-only">Reach out through my mail</span>
-                <Envelope height="32"/>
-            </a>
-        </li>
-        <li>
-            <a href="https://www.linkedin.com/in/jasdeep-singh-dhillon-0228a217b/">
-                <span class="sr-only">Connect with me on LinkedIn</span>
-                <Linkedin height="32"/>
-            </a>
-        </li>
-        <li>
-            <a href="/">
-                <span class="sr-only">Check out my Github</span>
-                <Github height="32"/>
-            </a>
-        </li>
-    </ul>
 </nav>
-</header>
