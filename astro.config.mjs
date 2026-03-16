@@ -10,13 +10,13 @@ export default defineConfig({
   fonts: [
     {
       provider: fontProviders.fontsource(),
-      name: "Tiny5",
-      cssVariable: "--font-tiny5",
+      name: "Pixelify Sans",
+      cssVariable: "--font-pixelify",
     },
     {
       provider: fontProviders.fontsource(),
-      name: "Jersey 10 Charted",
-      cssVariable: "--font-Jersey-10-Charted",
+      name: "Google Sans Flex",
+      cssVariable: "--font-google-sans",
     },
   ],
 
