@@ -1,1 +1,5 @@
 @import "tailwindcss";
+
+.font-pixel {
+  font-family: var(--font-tiny5);
+}

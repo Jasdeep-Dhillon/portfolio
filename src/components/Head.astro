@@ -2,6 +2,7 @@
 interface Props {
   title?: string;
 }
+import { Font } from "astro:assets";
 import "~/styles/global.css";
 const { title } = Astro.props;
 ---
@@ -10,3 +11,4 @@ const { title } = Astro.props;
 <title>{title ?? "Astro Tutorial"}</title>
 <meta name="description" content="Learning Astro" />
 <link rel="icon" type="x-icon" href="/favicon.svg" />
+<Font cssVariable="--font-tiny5" preload />
