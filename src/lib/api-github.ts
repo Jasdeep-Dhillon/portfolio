@@ -7,7 +7,7 @@ export async function getRepos() {
   });
   if (repos.length <= 0 || file.lastModified < Date.now() - 86400000) {
     repos = await fetch(
-      "    https://api.github.com/users/Jasdeep-Dhillon/repos"
+      "https://api.github.com/users/Jasdeep-Dhillon/repos",
     )
       .then(async (response) => await response.json())
       .catch((error) => {
@@ -25,7 +25,7 @@ export async function getInfo(project: string) {
   const info = repos.find((repo) => repo.name === project);
   if (!info) {
     return await fetch(
-      `https://api.github.com/repos/Jasdeep-Dhillon/${project}`
+      `https://api.github.com/repos/Jasdeep-Dhillon/${project}`,
     )
       .then((res) => res.json())
       .catch((err) => console.error(err));
@@ -40,8 +40,8 @@ export async function getLanguages(project: string, url: string) {
     console.error("Error reading local languages.json:", error);
   });
   console.log(data);
-  let languages = data.find(
-    (lang: { name: string }) => lang.name === project
+  let languages: Language[] = data.find(
+    (lang: { name: string }) => lang.name === project,
   )?.languages;
   if (!languages) {
     console.log("No data");

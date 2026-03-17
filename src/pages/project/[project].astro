@@ -11,7 +11,7 @@ export async function getStaticPaths() {
 const {project} = Astro.params;
 const info: Repo = await getInfo(project);
 
-const languages: Language = await getLanguages(project, info.languages_url);
+const languages: Language[] = await getLanguages(project, info.languages_url);
 
 
 ---
