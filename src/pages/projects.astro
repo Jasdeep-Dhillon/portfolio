@@ -1,27 +1,27 @@
 ---
+import { Icon } from "astro-icon/components";
 import MainLayout from "~/layouts/MainLayout.astro";
 import { getRepos } from "~/lib/api-github";
 import type { Repo } from "~/lib/types";
-import { Icon } from "astro-icon/components";
 
 const repos: Repo[] = await getRepos();
 ---
-<title>Projects</title>
+<title>Projects | Jasdeep Dhillon</title>
 <MainLayout>
-    <div class="m-2">
-        Projects Page
-        <ul class="flex flex-wrap gap-2">
+    <div class="mx-8">
+        <ul class="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
             { repos.map((repo) => (
-                <li id={repo.id.toString()} class="mb-4 border-2 border-red-400 min-w-48 p-4">
-                    <div class="flex gap-2">
-                    <a href={`/project/${repo.name}`}>{repo.name}</a>
+                <li id={repo.id.toString()} class="bg-card border-2 p-4">
+                    <div class="flex items-center gap-2">
+                    <a href={`/project/${repo.name}`} class="font-pixelify text-2xl capitalize text-wrap">
+                        {repo.name.replaceAll('-', ' ').replaceAll('_', ' ')}
+                    </a>
                     <a href={repo.html_url} target="_blank" rel="noopener noreferrer" class="hover:underline text-xl font-bold">
                         <Icon name="streamline-pixel:interface-essential-hyperlink"/>
                     </a>
                     </div>
-                    {repo.description && <p class="text-gray-600">{repo.description}</p>}
+                    {repo.description && <p class="text-muted-foreground">{repo.description}</p>}
                 </li>
-
             )) }
     </div>
 </MainLayout>
