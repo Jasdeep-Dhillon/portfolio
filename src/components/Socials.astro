@@ -2,7 +2,7 @@
 import { Icon } from "astro-icon/components";
 import Github from "~/icons/github.svg";
 ---
-<ul class="flex justify-end gap-2 h-full items-center">
+<ul class="flex justify-end gap-2 h-full items-center row-start-1 col-start-2 lg:col-start-3">
     <li>
         <a href="mailto:jsdhillon286@gmail.com" target="_blank">
             <span class="sr-only">Reach out through my mail</span>
@@ -26,5 +26,9 @@ import Github from "~/icons/github.svg";
             <span class="sr-only">View my resume</span>
             <Icon name="streamline-pixel:content-files-pdf" width={24} height={24}/>
         </a>
+    </li>
+    <li>
+        <Icon name="streamline-pixel:weather-cresent-moon-stars" width={24} height={24} class="dark:block hidden"/>
+        <Icon name="streamline-pixel:social-rewards-rating-star-2" width={24} height={24} class="dark:hidden block"/>
     </li>
 </ul>

@@ -1,11 +1,22 @@
 ---
-import { Icon } from "astro-icon/components";
-import Github from "~/assets/icons/github.svg";
+const currentPath = Astro.url.pathname;
+console.log(currentPath);
+const navLinks = [
+  {path: "/", label: "Home"},
+  {path: "/projects", label: "Projects"},
+  {path: "/about", label: "About"}
+];
+// TODO: Update current link option
 ---
-<nav class="center">
-    <ul class="flex justify-evenly gap-4 font-semibold bg-black/20 py-2 px-6 rounded-3xl font-pixelify">
-        <li class="hover:scale-105 transition-all"><a href="/">Home</a></li>
-        <li><a href="/projects">Projects</a></li>
-        <li><a href="/about">About</a></li>
+<nav class="m-auto lg:col-span-1 col-span-2">
+    <ul class="flex justify-evenly gap-6 font-semibold py-2 px-12 font-pixelify text-xl">
+        {navLinks.map((link, index)=> (
+          <li class=`${link.path === currentPath ? "underline": ""} transition-all`>
+              <a href={link.path} class="transition-all">
+                  {link.label}
+              </a>
+          </li>
+          ))
+        }
     </ul>
 </nav>
