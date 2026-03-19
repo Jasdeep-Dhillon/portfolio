@@ -8,20 +8,25 @@ const repos: Repo[] = await getRepos();
 ---
 <title>Projects | Jasdeep Dhillon</title>
 <MainLayout>
-    <div class="mx-8">
-        <ul class="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
+    <div class="m-8">
+        <ul class="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-4">
             { repos.map((repo) => (
-                <li id={repo.id.toString()} class="bg-card border-2 p-4">
-                    <div class="flex items-center gap-2">
-                    <a href={`/project/${repo.name}`} class="font-pixelify text-2xl capitalize text-wrap">
-                        {repo.name.replaceAll('-', ' ').replaceAll('_', ' ')}
-                    </a>
-                    <a href={repo.html_url} target="_blank" rel="noopener noreferrer" class="hover:underline text-xl font-bold">
-                        <Icon name="streamline-pixel:interface-essential-hyperlink"/>
-                    </a>
+                <li id={repo.id.toString()} class="bg-card border-2 p-4 transition-colors duration-500 motion-reduce:duration-0">
+                    <div class="flex items-center justify-between gap-2">
+                        <a href={`/project/${repo.name}`} class="font-pixelify text-2xl capitalize text-wrap flex gap-2 items-center">
+                            <span class="project-name" id={repo.name}>
+                              {repo.name.replaceAll('-', ' ').replaceAll('_', ' ')}
+                            </span>
+                            {repo.fork && <Icon name="fork" width={16} height={16}/>}
+                        </a>
+                        <a href={repo.html_url} target="_blank" rel="noopener noreferrer" class="hover:underline text-xl font-bold">
+                            <span class="sr-only">Open {repo.name} on GitHub</span>
+                            <Icon name="pixelarticons:external-link-sharp"/>
+                        </a>
                     </div>
-                    {repo.description && <p class="text-muted-foreground">{repo.description}</p>}
+                    {repo.description && <p class="text-muted-foreground py-2"}>{repo.description}</p>}
                 </li>
             )) }
+        </ul>
     </div>
 </MainLayout>
