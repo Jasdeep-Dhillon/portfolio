@@ -6,9 +6,7 @@ export async function getRepos() {
     console.error("Error reading local data.json:", error);
   });
   if (repos.length <= 0 || file.lastModified < Date.now() - 86400000) {
-    repos = await fetch(
-      "https://api.github.com/users/Jasdeep-Dhillon/repos",
-    )
+    repos = await fetch("https://api.github.com/users/Jasdeep-Dhillon/repos")
       .then(async (response) => await response.json())
       .catch((error) => {
         console.error("Error fetching projects:", error);
@@ -34,13 +32,12 @@ export async function getInfo(project: string) {
 }
 
 export async function getLanguages(project: string, url: string) {
-  if (!url) return [];
+  // if (!url) return [];
   const file = Bun.file("src/assets/languages.json");
   const data = await file.json().catch((error) => {
     console.error("Error reading local languages.json:", error);
   });
-  console.log(data);
-  let languages: Language[] = data.find(
+  let languages: Language = data.find(
     (lang: { name: string }) => lang.name === project,
   )?.languages;
   if (!languages) {
@@ -52,4 +49,19 @@ export async function getLanguages(project: string, url: string) {
     await file.write(JSON.stringify(data));
   }
   return languages;
+}
+
+export async function getReadme(repo: Repo) {
+  const file = Bun.file(`src/readme/${repo.name}.md`);
+  const content = await file.text().catch(async () => {
+    const response = await fetch(
+      `https://raw.githubusercontent.com/Jasdeep-Dhillon/${repo.name}/refs/heads/${repo.default_branch}/README.md`,
+    );
+    if (response.status === 404) {
+      file.write("");
+      return "";
+    }
+    file.write(await response.text());
+  });
+  return content;
 }
