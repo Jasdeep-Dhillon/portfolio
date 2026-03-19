@@ -15,6 +15,7 @@ export interface Repo {
   open_issues: number;
   languages_url: string;
   topics: string[];
+  default_branch: string;
 }
 
 export interface Language {
