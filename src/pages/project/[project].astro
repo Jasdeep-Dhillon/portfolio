@@ -18,7 +18,11 @@ export async function getStaticPaths() {
 const {project} = Astro.params;
 const repo: Repo = await getInfo(project);
 const languages: Language = await getLanguages(project, repo.languages_url);
-const readme = await getEntry("readme", repo.name.toLowerCase());
+let readme = await getEntry("readme", repo.name.toLowerCase());
+
+if(!readme) {
+  readme = {id: repo.name.toLowerCase(), data:{}, collection: "readme"};
+}
 const {Content} = await render(readme);
 ---
 <title>{project} | Portfolio</title>
