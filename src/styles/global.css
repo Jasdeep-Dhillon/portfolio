@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 .font-pixelify {
   font-family: var(--font-pixelify);
@@ -198,4 +199,13 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@view-transition {
+  navigation: auto;
+}
+
+.project-name[id] {
+  view-transition-name: attr(id type(<custom-ident>), none);
+  view-transition-class: project-name;
 }
