@@ -1,17 +1,16 @@
 ---
 const currentPath = Astro.url.pathname;
-console.log(currentPath);
 const navLinks = [
   {path: "/", label: "Home"},
   {path: "/projects", label: "Projects"},
-  {path: "/about", label: "About"}
+  {path: "/about", label: "About"},
+  {path: "/resume", label: "Resume"}
 ];
-// TODO: Update current link option
 ---
 <nav class="m-auto lg:col-span-1 col-span-2">
-    <ul class="flex justify-evenly gap-6 font-semibold py-2 px-12 font-pixelify text-xl">
-        {navLinks.map((link, index)=> (
-          <li class=`${link.path === currentPath ? "underline": ""} transition-all`>
+    <ul class="flex justify-evenly font-semibold py-2 md:px-12 font-pixelify sm:text md:text-xl">
+        {navLinks.map((link)=> (
+          <li class=`${link.path === currentPath ? "border": ""} transition-all px-6 py-2 hover:bg-card`>
               <a href={link.path} class="transition-all">
                   {link.label}
               </a>
