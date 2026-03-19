@@ -26,8 +26,9 @@ import { Icon } from "astro-icon/components";
             <Icon name="streamline-pixel:content-files-pdf" width={24} height={24}/>
         </a>
     </li>
-    <li>
-        <Icon name="streamline-pixel:weather-cresent-moon-stars" width={24} height={24} class="dark:block hidden"/>
-        <Icon name="streamline-pixel:social-rewards-rating-star-2" width={24} height={24} class="dark:hidden block"/>
-    </li>
+    <button class="ms-2 bg-card p-2 border cursor-pointer" id="theme-toggle">
+        <Icon name="pixelarticons:moon" width={24} height={24} class="dark:block hidden"/>
+        <Icon name="pixelarticons:sun" width={24} height={24} class="dark:hidden block"/>
+    </button>
 </ul>
+
