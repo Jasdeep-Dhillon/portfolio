@@ -1,26 +1,50 @@
 ---
 import MainLayout from "~/layouts/MainLayout.astro";
-import { getInfo, getLanguages, getRepos } from "~/lib/api-github";
+import Prose from "~/components/Prose.astro";
+import { getInfo, getLanguages, getRepos, getReadme } from "~/lib/api-github";
 import type { Language, Repo } from "~/lib/types";
-
+import { Icon } from "astro-icon/components";
+import { getEntry, render } from "astro:content";
 export const prerender = true;
 export async function getStaticPaths() {
-    const repos = await getRepos();
-    return repos.map((repo) => ({params: {project: repo.name}}))
+    const repos: Repo[] = await getRepos();
+    return repos.map((repo) => {
+      getReadme(repo);
+      return {
+        params: {project: repo.name}
+      }
+    });
 }
 const {project} = Astro.params;
-const info: Repo = await getInfo(project);
-
-const languages: Language[] = await getLanguages(project, info.languages_url);
-
-
+const repo: Repo = await getInfo(project);
+const languages: Language = await getLanguages(project, repo.languages_url);
+const readme = await getEntry("readme", repo.name.toLowerCase());
+const {Content} = await render(readme);
 ---
 <title>{project} | Portfolio</title>
 <MainLayout>
-    Project Page
-    {project}
-    {info.homepage}
-    {Object.keys(languages).map((lang) => (
-        <div>{lang}</div>
-    ))}
+    <section class="m-8 max-w-4xl mx-auto flex flex-col gap-4 bg-card p-8 border">
+        <div class="capitalize font-pixelify text-3xl flex items-center gap-4">
+            <span class="project-name" id={repo.name}>
+              {project.replaceAll('-', ' ').replaceAll('_', ' ')}
+            </span>
+          <a href={repo.html_url} target="_blank">
+               <Icon name="pixelarticons:external-link-sharp" width={24} height={24}/>
+          </a>
+        </div>
+        <!-- <div >
+            {repo.description}
+        </div> -->
+        <div>
+          {repo.homepage && <span>{repo.homepage}</span>}
+        </div>
+        <div class="flex flex-wrap gap-2 ">
+          {Object.keys(languages).map((lang) => (
+              <span class="p-2 bg-card border">{lang}</span>
+          ))}
+        </div>
+        <Prose>
+            <Content/>
+        </Prose>
+    </section>
 </MainLayout>
