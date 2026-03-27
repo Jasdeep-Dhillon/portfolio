@@ -1,18 +1,20 @@
+import { existsSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import type { Language, Repo } from "./types";
-
 export async function getRepos() {
-  const file = Bun.file("src/assets/data.json");
-  let repos: Repo[] = await file.json().catch((error) => {
-    console.error("Error reading local data.json:", error);
-  });
-  if (repos.length <= 0 || file.lastModified < Date.now() - 86400000) {
+  const file = "src/assets/data.json";
+  if (!existsSync(file)) {
+    writeFileSync(file, "[]");
+  }
+  let repos: Repo[] = JSON.parse(readFileSync(file, "utf-8"));
+
+  if (repos.length <= 0 || statSync(file).mtimeMs <= Date.now() - 86400000) {
     repos = await fetch("https://api.github.com/users/Jasdeep-Dhillon/repos")
       .then(async (response) => await response.json())
       .catch((error) => {
         console.error("Error fetching projects:", error);
-        return { json: () => [] }; // Return an empty array on error
+        return { json: () => [] };
       });
-    file.write(JSON.stringify(repos));
+    writeFileSync(file, JSON.stringify(repos));
     console.log("Fetched from API");
   }
   return repos;
@@ -33,10 +35,11 @@ export async function getInfo(project: string) {
 
 export async function getLanguages(project: string, url: string) {
   // if (!url) return [];
-  const file = Bun.file("src/assets/languages.json");
-  const data = await file.json().catch((error) => {
-    console.error("Error reading local languages.json:", error);
-  });
+  const file = "src/assets/languages.json";
+  if (!existsSync(file)) {
+    writeFileSync(file, "");
+  }
+  const data = JSON.parse(readFileSync(file, "utf-8"));
   let languages: Language = data.find(
     (lang: { name: string }) => lang.name === project,
   )?.languages;
@@ -46,22 +49,22 @@ export async function getLanguages(project: string, url: string) {
       .then((res) => res.json())
       .catch((err) => console.error(err));
     data.push({ name: project, languages });
-    await file.write(JSON.stringify(data));
+    writeFileSync(file, JSON.stringify(data));
   }
   return languages;
 }
 
 export async function getReadme(repo: Repo) {
-  const file = Bun.file(`src/readme/${repo.name}.md`);
-  const content = await file.text().catch(async () => {
+  const file = `src/readme/${repo.name}.md`;
+  if (!existsSync(file)) {
     const response = await fetch(
       `https://raw.githubusercontent.com/Jasdeep-Dhillon/${repo.name}/refs/heads/${repo.default_branch}/README.md`,
     );
     if (response.status === 404) {
-      file.write("");
-      return "";
+      writeFileSync(file, "");
+    } else {
+      writeFileSync(file, await response.text());
     }
-    file.write(await response.text());
-  });
-  return content;
+  }
+  return readFileSync(file);
 }
