@@ -36,12 +36,15 @@ export async function getInfo(project: string) {
 export async function getLanguages(project: string, url: string) {
   // if (!url) return [];
   const file = "src/assets/languages.json";
+
   if (!existsSync(file)) {
-    writeFileSync(file, "");
+    writeFileSync(file, "[]");
   }
-  const data = JSON.parse(readFileSync(file, "utf-8"));
+  const data = JSON.parse(readFileSync(file, "utf-8")) ?? [];
+  console.log("Data: ", data);
+
   let languages: Language = data.find(
-    (lang: { name: string }) => lang.name === project,
+    (repo: { name: string }) => repo.name === project,
   )?.languages;
   if (!languages) {
     console.log("No data");
