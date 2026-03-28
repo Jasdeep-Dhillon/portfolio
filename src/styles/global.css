@@ -201,16 +201,29 @@
   }
 }
 
-/*@view-transition {
+@view-transition {
   navigation: auto;
-}*/
+}
 
-/*::view-transition-old(root),
-::view-transition-new(root) {
-  background: var(--background);
-}*/
-
-/*.project-name[id] {
+.project-name[id] {
   view-transition-name: attr(id type(<custom-ident>), none);
   view-transition-class: project-name;
-}*/
+}
+
+.shake {
+  animation-name: shake;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+  25% {
+    rotate: 12deg;
+  }
+  50% {
+    rotate: 0deg;
+  }
+  75% {
+    rotate: -12deg;
+  }
+}
