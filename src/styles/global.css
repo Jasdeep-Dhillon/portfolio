@@ -201,11 +201,16 @@
   }
 }
 
-@view-transition {
+/*@view-transition {
   navigation: auto;
-}
+}*/
 
-.project-name[id] {
+/*::view-transition-old(root),
+::view-transition-new(root) {
+  background: var(--background);
+}*/
+
+/*.project-name[id] {
   view-transition-name: attr(id type(<custom-ident>), none);
   view-transition-class: project-name;
-}
+}*/

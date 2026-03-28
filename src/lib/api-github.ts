@@ -41,7 +41,6 @@ export async function getLanguages(project: string, url: string) {
     writeFileSync(file, "[]");
   }
   const data = JSON.parse(readFileSync(file, "utf-8")) ?? [];
-  console.log("Data: ", data);
 
   let languages: Language = data.find(
     (repo: { name: string }) => repo.name === project,
