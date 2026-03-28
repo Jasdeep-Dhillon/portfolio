@@ -11,7 +11,7 @@ const navLinks = [
     <ul class="flex justify-evenly font-semibold py-2 md:px-12 font-pixelify sm:text md:text-xl">
         {navLinks.map((link)=> (
           <li class=`${link.path === currentPath ? "border": ""} transition-all px-6 py-2 hover:bg-card`>
-              <a href={link.path} class="transition-all">
+              <a href={link.path}>
                   {link.label}
               </a>
           </li>

@@ -1,6 +1,37 @@
 ---
+import { Icon } from "astro-icon/components";
 ---
-<footer class="p-8">
-    <!-- &copy; {new Date().getFullYear()} Jasdeep Singh Dhillon -->
-    <a href="https://github.com/Jasdeep-Dhillon/portfolio" class="text-primary underline ms-2">Source Code</a>
+<footer class="p-8 bg-background border-t">
+    <section class="flex items-center justify-between">
+        <div>
+            &copy; {new Date().getFullYear()} Jasdeep Singh Dhillon
+            <a href="https://github.com/Jasdeep-Dhillon/portfolio" class="text-primary underline ms-2">Source Code</a>
+        </div>
+        <ul class="flex justify-end gap-2 h-full items-center row-start-1 col-start-2 lg:col-start-3 [&>li]:hover:rotate-5">
+            <li>
+                <a href="mailto:jasdeepsdhillon@proton.me" target="_blank">
+                    <span class="sr-only">Reach out through my mail</span>
+                    <Icon name="streamline-pixel:email-envelope-close" width={24} height={24}/>
+                </a>
+            </li>
+            <li>
+                <a href="https://github.com/Jasdeep-Dhillon" target="_blank">
+                    <span class="sr-only">Check out my Github</span>
+                    <Icon name="github" width={24} height={24}/>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.linkedin.com/in/jasdeep-singh-dhillon-0228a217b/" target="_blank">
+                    <span class="sr-only">Connect with me on LinkedIn</span>
+                    <Icon name="streamline-pixel:logo-linkedin" width={24} height={24}/>
+                </a>
+            </li>
+            <li>
+                <a href="Resume.pdf" target="_blank">
+                    <span class="sr-only">View my resume</span>
+                    <Icon name="streamline-pixel:content-files-pdf" width={24} height={24}/>
+                </a>
+            </li>
+        </ul>
+    </section>
 </footer>

@@ -1,11 +1,25 @@
 ---
+import hero from "~/assets/videos/hero.webm";
 import MainLayout from "~/layouts/MainLayout.astro";
-
-console.log("Hello Terminal");
 ---
 <title>Portfolio | Jasdeep Dhillon</title>
 <MainLayout>
-    <section class="m-8">
-        <h1>Hello World</h1>
+    <video src={hero} 
+        class="bg-cover absolute top-0 min-w-full w-auto -z-10 overflow-hidden" 
+        autoplay 
+        loop
+    />
+    <section class="relative dark:text-foreground text-background py-16 md:py-28 flex flex-col gap-8">
+        <h1 class="text-center text-6xl md:text-8xl font-pixelify text-balance">
+            Jasdeep Dhillon
+        </h1>
+        <div class="m-auto text-center text-2xl">
+            Developer, UI/UX Engineer, AI Scientist
+        </div>
+    </section>
+    <section class="bg-background p-8">
+        Some content
+        
+        
     </section>
 </MainLayout>
