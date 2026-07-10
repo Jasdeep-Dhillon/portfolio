@@ -1,5 +1,4 @@
 ---
-import { Icon } from "astro-icon/components";
 import MainLayout from "~/layouts/MainLayout.astro";
 ---
 <title>Jasdeep Dhillon</title>
@@ -8,36 +7,31 @@ import MainLayout from "~/layouts/MainLayout.astro";
     <section class="relative dark:text-foreground text-background py-16 md:py-28 flex flex-col lg:h-[50dvh] md:h-[30dvh] h-[40dvh] justify-center">
         <h1 class="text-center lg:text-8xl text-7xl font-pixelify text-balance">
             Jasdeep Dhillon
-        <div class="m-auto text-center lg:text-xl text-lg mt-4">
-            Developer, UI/UX Engineer, AI Scientist
-        </div>
+            <div class="m-auto text-center lg:text-xl text-lg mt-4">
+                Developer, UI/UX Engineer, AI Scientist
+            </div>
         </h1>
     </section>
     <section class="bg-background p-8">
         <div class="flex flex-col gap-4 text-pretty max-w-5xl m-auto text-lg">
             <div>
-                I’m someone who enjoys figuring things out especially when it comes to technology, problem-solving, and building things that actually work. Whether it’s digging into code, troubleshooting an issue, or exploring new ideas, I like getting hands-on and learning by doing.
+                I am a developer who enjoys learning and trying new things out. I am currently trying to get better at systems programming and graphics programming as I have very little knowledge of it compared to web development. I love debugging as I believe best way to learn programming is by experimenting with it and learning from your failures.
             </div>
             <div>
-                I tend to approach challenges with curiosity and persistence. If something doesn’t work the first time, I’ll keep refining it until it does. That mindset has shaped how I learn and how I work: practical, focused, and always improving.
+                I have been dabbling into reverse engineering and cybersecurity as well to learn more about security exploits and ways to avoid them in my code. I am far from perfect but I am always striving to learn more and incorporate all the learning as I develop software. 
             </div>
             <div>
-                I’m particularly interested in computers and software—understanding how systems function, how to optimize them, and how to create solutions that are both efficient and reliable. I value clarity, simplicity, and results.
+                I enjoy problem-solving and the process of learning therefore I build projects to learn and challenge my pre-conceived notions of a given language or framework giving me a better understanding of the technology. I love experimenting with new technologies as they provide a new view to tackle old problems with different trade-offs.
             </div>
             <div>
-                Outside of that, I keep things straightforward. I prefer meaningful work over noise, and progress over perfection.
+                I am interested in technology be it software or hardware and how they interact with each other. I feel like knowing how the hardware handles the software is essential to writing great software and am always striving to learn more. I am also particularly interested in software architecture and understanding how systems function, in turn being able to make them both efficient and reliable.
             </div>
-            This page is a snapshot of who I am right now—always learning, always building, and always moving forward.
+            <div>
+                Outside of that, I also have started my homelab by hosting Jellyfin and Fluxer alongside tailscale to access those services remotely. I love gaming and anime. You can check my <a class="text-primary hover:decoration-wavy hover:underline" href="https://anilist.co/user/Arc2/">AniList</a>
+            </div>
         </div>
     </section>
-    <section class="bg-background p-8 ">
-        <div class="flex items-center text-3xl gap-2">
-            Design <Icon name="pixelarticons:chevron-right" width={34} height={34}/>
-        </div>
-        <ul>
 
-        </ul>
-    </section>
 
     <script type="module" is:inline>
       const VERT = `attribute vec2 a_pos;void main(){gl_Position=vec4(a_pos,0,1);}`
