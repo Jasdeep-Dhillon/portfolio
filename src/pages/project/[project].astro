@@ -27,7 +27,7 @@ const {Content} = await render(readme);
 ---
 <title>{project} | Jasdeep Dhillon</title>
 <MainLayout>
-    <section class="m-8 max-w-4xl mx-auto flex flex-col gap-4 bg-card p-8 border">
+    <section class="lg:my-8 max-w-4xl mx-auto flex flex-col gap-4 bg-card p-8 border">
         <div class="capitalize font-pixelify text-3xl flex items-center gap-4">
             <span class="project-name" id={repo.name}>
               {project.replaceAll('-', ' ').replaceAll('_', ' ')}
@@ -36,9 +36,9 @@ const {Content} = await render(readme);
                <Icon name="pixelarticons:external-link-sharp" width={24} height={24}/>
           </a>
         </div>
-        <!-- <div >
+        <div>
             {repo.description}
-        </div> -->
+        </div>
         <div>
           {repo.homepage && <span>{repo.homepage}</span>}
         </div>
@@ -47,6 +47,7 @@ const {Content} = await render(readme);
               <span class="p-2 bg-card border">{lang}</span>
           ))}
         </div>
+        <hr/>
         <Prose>
             <Content/>
         </Prose>
