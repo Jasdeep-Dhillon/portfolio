@@ -1,29 +1,29 @@
 ---
-import MainLayout from "~/layouts/MainLayout.astro";
-import Prose from "~/components/Prose.astro";
-import { getInfo, getLanguages, getRepos, getReadme } from "~/lib/api-github";
-import type { Language, Repo } from "~/lib/types";
-import { Icon } from "astro-icon/components";
 import { getEntry, render } from "astro:content";
+import { Icon } from "astro-icon/components";
+import Prose from "~/components/Prose.astro";
+import MainLayout from "~/layouts/MainLayout.astro";
+import { getInfo, getLanguages, getReadme, getRepos } from "~/lib/api-github";
+import type { Language, Repo } from "~/lib/types";
 export const prerender = true;
 export async function getStaticPaths() {
-    const repos: Repo[] = await getRepos();
-    return repos.map((repo) => {
-      getReadme(repo);
-      return {
-        params: {project: repo.name}
-      }
-    });
+  const repos: Repo[] = await getRepos();
+  return repos.map((repo) => {
+    getReadme(repo);
+    return {
+      params: { project: repo.name },
+    };
+  });
 }
-const {project} = Astro.params;
+const { project } = Astro.params;
 const repo: Repo = await getInfo(project);
 const languages: Language = await getLanguages(project, repo.languages_url);
 let readme = await getEntry("readme", repo.name.toLowerCase());
 
-if(!readme) {
-  readme = {id: repo.name.toLowerCase(), data:{}, collection: "readme"};
+if (!readme) {
+  readme = { id: repo.name.toLowerCase(), data: {}, collection: "readme" };
 }
-const {Content} = await render(readme);
+const { Content } = await render(readme);
 ---
 <title>{project} | Jasdeep Dhillon</title>
 <MainLayout>

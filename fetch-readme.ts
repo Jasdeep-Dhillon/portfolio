@@ -1,4 +1,4 @@
-import { getRepos, getReadme } from "./src/lib/api-github.ts";
+import { getReadme, getRepos } from "./src/lib/api-github.ts";
 import type { Repo } from "./src/lib/types.ts";
 
 const repos: Repo[] = await getRepos();
