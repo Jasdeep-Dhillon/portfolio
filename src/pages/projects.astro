@@ -8,8 +8,8 @@ const repos: Repo[] = await getRepos();
 ---
 <title>Projects | Jasdeep Dhillon</title>
 <MainLayout>
-    <div class="m-8">
-        <ul class="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-4">
+    <section class="m-8">
+        <ul class="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             { repos.map((repo) => (
                 <li id={repo.id.toString()} class="bg-card border-2 p-4 transition-colors duration-500 motion-reduce:duration-0">
                     <div class="flex items-center justify-between gap-2">
@@ -28,5 +28,5 @@ const repos: Repo[] = await getRepos();
                 </li>
             )) }
         </ul>
-    </div>
+    </section>
 </MainLayout>
