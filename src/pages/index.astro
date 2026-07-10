@@ -39,7 +39,7 @@ import MainLayout from "~/layouts/MainLayout.astro";
         </ul>
     </section>
 
-    <script type="module">
+    <script type="module" is:inline>
       const VERT = `attribute vec2 a_pos;void main(){gl_Position=vec4(a_pos,0,1);}`
       const FRAG = `precision highp float;
         uniform vec2 u_res;

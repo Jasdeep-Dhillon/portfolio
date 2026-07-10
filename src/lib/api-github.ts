@@ -68,5 +68,5 @@ export async function getReadme(repo: Repo) {
       writeFileSync(file, await response.text());
     }
   }
-  return readFileSync(file);
+  return readFileSync(file, "utf8");
 }
